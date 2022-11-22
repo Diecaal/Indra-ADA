@@ -1,0 +1,43 @@
+package alumno is
+
+   type C_Alumno is tagged private;
+   type Alumno is access C_Alumno'Class;
+   
+   type Entrada is new Integer range 0..10;
+   subtype Nota is Entrada range 0..10;
+   
+   package Integer_Array_List is new Ada.Containers.Vectors(Element_Type => Nota; Index_Type => Positive);
+   
+   use Integer_Array_List;
+   
+   function Create(Nombre: String) return Alumno;
+   
+   function Get_Nombre(This: C_Alumno) return String is
+   begin
+      return To_String(This.Nombre);
+   end Get_Nombre;
+   
+   procedure Hacer_Examen(This: C_Alumno) is
+      Calificacion: Nota;
+   begin
+      Calificacion := Nota(Get_Integer_Betweeen(Integer(Nota'First), Integer(Nota'Last), "Ingrese calificacion: "));
+      
+      This.Notas.Append(Calificacion);
+      
+      Put_Line("Calificaciones almacenadas: ");
+      for Valor of This.Notas loop
+         Put_Line(Valor'Image);
+      end loop;
+      Put_Line(" ");
+   end Hacer_Examen;
+   
+   function Promedio_Notas(This: C_Alumno) return Float is
+      type Sum is new Float range 0.0..(10.0*Float(Length(This.Notas)));
+      Suma:= Sum := 0.0;
+   begin
+   end;
+     
+   end Promedio_Notas;
+   
+
+end alumno;

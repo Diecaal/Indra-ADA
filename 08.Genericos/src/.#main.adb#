@@ -1,0 +1,13 @@
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Text_IO; use Ada.Text_IO;
+with Alumno_Package; use Alumno_Package;
+
+procedure Main is
+
+   Diego : ALumno := Create("Diego");
+
+begin
+   --  Insert code here.
+   Put_Line("Soy el alumno: " & Diego.Get_Nombre);
+   null;
+end Main;

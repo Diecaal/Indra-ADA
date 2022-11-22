@@ -1,0 +1,27 @@
+package alumno_package is
+
+   type C_Alumno is tagged private;
+   type Alumno is access C_Alumno'Class;
+
+   type Insertar_Nota is new Integer range 0 .. 10;
+   subtype Nota is Entrada_Nota range 1 .. 10;
+
+   package Integer_Array_List is new Ada.Containers.Vectors
+     (Element_Type => Nota, Index_Type => Positive);
+
+   use Integer_Array_List;
+
+   function Create (Nombre : String);
+
+   function Get_Nombre (This : C_Alumno) return Sring;
+
+   procedure Hacer_Examen (This : C_Alumno);
+   function Promedio_Notas (This : C_Alumno) return Float;
+
+private
+   type C_Alumno is tagged record
+      Nombre : Unbounded_String;
+      Notas  : Integer_Array_List.Vector;
+   end record;
+
+end alumno_package;
